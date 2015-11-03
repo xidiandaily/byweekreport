@@ -42,6 +42,10 @@ function init_calc(){
 
 function btn_click_addjob(){
     console.log("btn_click_addjob");
+    if($.cookie('teamname')==null || $.cookie('teamname')=='' || $.cookie('teamname')=='ALL'){
+        alert("请在右上角选择小组名称,再点击添加按钮");
+        return;
+    }
     if($("#id-table-addjob").is(":visible")){
         $("#id-table-addjob").hide();
         $("#id-btn-addjob").text("增加");
@@ -101,11 +105,16 @@ function btn_click_submit_deljob(id){
 }
 
 function init_joblist(){
+    var data=new Object();
+    data.action="get_joblist";
+    data.req=new Object();
+    data.req.teamname=$("#id-select-teamname").val();
+    data.req.weekcount=$("#id-select-weekcount").val();
     $.ajax({
         type:"POST",
         url:g_jsconfig.adjax_url,
         dataType:"json",
-        data:{"action":"get_joblist","req":{"teamname":"ALL","weekcount":"1"}},
+        data:data,
     }).done(function(resp){
         if(resp.ret=='true'){
             $(".template_generate").detach();
@@ -140,9 +149,32 @@ function init_classmate(){
     });
 }
 
+function init_teamname(){
+    if($.cookie('teamname')==null || $.cookie('teamname')==''){
+        $("#id-select-teamname").val("麻将小组");
+    }else{
+        $("#id-select-teamname").val($.cookie('teamname'));
+    }
+    $("#id-select-weekcount").val("1");
+    $("#id-select-teamname").change(function(){
+        if($("#id-table-addjob").is(":visible")){
+            alert("编辑模式下不能切换项目!");
+            $("#id-select-teamname").val($.cookie('teamname'));
+            return;
+        }
+        $.cookie('teamname',$("#id-select-teamname").val(),{expires:14,path:'/'});
+        init_joblist();
+    });
+
+    $("#id-select-weekcount").change(function(){
+        init_joblist();
+    });
+}
+
 $(function(){
     init_teamname();
     init_classmate();
     init_joblist();
+    init_teamname();
 });
 

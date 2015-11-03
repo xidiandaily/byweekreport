@@ -19,6 +19,7 @@
 
         <script src="javascript/underscore-min.js"></script>
         <script src="javascript/index.js"></script>
+        <script src="javascript/jquery.cookie.js"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,39 +44,21 @@
                 </div>
                 <div>
                     <div class="pull-right">
-                        <div class="col-md-6">
-                            <span class="col-md-4"><strong>小组:</strong></span>
-                            <div class="dropdown col-md-8">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Dropdown
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <span class="col-md-6"><strong>用户名:</strong></span>
-                            <div class="dropdown col-md-6">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Dropdown
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </div>
+                        <div class="col-md-12">
+                            <select id="id-select-teamname" name="select" class="col-md-6">
+                                <option value="ALL">ALL</option> 
+                                <option value="麻将小组">麻将小组</option>
+                                <option value="极冬小组">极冬小组</option>
+                                <option value="金刚小组">金刚小组</option>
+                            </select>
+                            <select id="id-select-weekcount" name="select" class="col-md-6">
+                                <option value="1">最近1周</option> 
+                                <option value="2" selected>最近2周</option>
+                                <option value="3">最近3周</option>
+                                <option value="4">最近4周</option>
+                            </select>
                         </div>
                     </div>
-                    <form>
-                    </form>
                 </div>
             </div>
             <table class="table table-hover table-bordered table-striped">
@@ -109,22 +92,6 @@
                     <td>AM</td>
                     <td>PM</td>
                     <td></td>
-                </tr>
-                <tr>
-                    <td class="hide" name="id">1</td>
-                    <td>项目名称</td>
-                    <td>负责人</td>
-                    <td>AM</td>
-                    <td>PM</td>
-                    <td>AM</td>
-                    <td>PM</td>
-                    <td>AM</td>
-                    <td>PM</td>
-                    <td>AM</td>
-                    <td>PM</td>
-                    <td>PM</td>
-                    <td>PM</td>
-                    <td>PM</td>
                 </tr>
                 <tr id="id-table-addjob" style="display:none">
                     <td><input type="text" name="job" value="【】"/></td>
