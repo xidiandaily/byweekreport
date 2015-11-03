@@ -168,6 +168,11 @@ function btn_click_submit_dellastjob(id){
     });
 }
 
+function btn_show_hide_button(){
+    $(".btn").hide();
+    alert("所有按钮已经隐藏，请手动复制!");
+}
+
 function init_joblist(){
     var data=new Object();
     data.action="get_joblist";
