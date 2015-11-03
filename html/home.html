@@ -17,6 +17,8 @@
         <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
         <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+        <script src="javascript/index.js"></script>
+
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -27,9 +29,9 @@
     <body>
         <div class="container">
             <div>
-                <head>
+                <div>
                     <h1>周报编写工具</h1>
-                </head>
+                </div>
                 <div>
                     <div class="pull-right">
                         <div class="col-md-6">
@@ -63,93 +65,18 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table table-hover table-bordered table-striped">
-                        <tr>
-                            <td rowspan="2">任务</td>
-                            <td rowspan="2">负责人</td>
-                            <td colspan="2">周一</td>
-                            <td colspan="2">周二</td>
-                            <td colspan="2">周三</td>
-                            <td colspan="2">周四</td>
-                            <td colspan="2">周五</td>
-                            <td>备注</td>
-                            <td>上周吗?</td>
-                            <td>操作</td>
-                            <tr>
-                                <td>AM</td>
-                                <td>PM</td>
-                                <td>AM</td>
-                                <td>PM</td>
-                                <td>AM</td>
-                                <td>PM</td>
-                                <td>AM</td>
-                                <td>PM</td>
-                                <td>AM</td>
-                                <td>PM</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tr>
-                        <tr>
-                            <td><input type="text" id="task" size="50" value="【】"/></td>
-                            <td>
-                                <select id="name">
-                                    <option value ="史岳斌">史岳斌</option>
-                                    <option value ="芦少军">芦少军</option>
-                                    <option value ="杜智超">杜智超</option>
-                                    <option value ="王焕林">王焕林</option>
-                                    <option value= "曾祯">曾祯</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="checkbox" id="c00"/>
-                            </td>
-                            <td>
-                                <input type="checkbox" id="c01"/>
-                            </td>
-                            <td>
-                                <input type="checkbox" id="c10"/>
-                            </td>
-                            <td>
-                                <input type="checkbox" id="c11"/>
-                            </td>
-                            <td>
-                                <input type="checkbox" id="c20"/>
-                            </td>
-                            <td>
-                                <input type="checkbox" id="c21"/>
-                            </td>
-                            <td>
-                                <input type="checkbox" id="c30"/>
-                            </td>
-                            <td>
-                                <input type="checkbox" id="c31"/>
-                            </td>
-                            <td>
-                                <input type="checkbox" id="c40"/>
-                            </td>
-                            <td>
-                                <input type="checkbox" id="c41"/>
-                            </td>
-                            <td>
-                                <input type="text" id="remark" size="50"/>
-                            </td>
-                            <td>
-                                <select id="type">
-                                    <option value="0">上周</option>
-                                    <option value="1">本周</option>
-                                </select>
-                            </td>
-                            <td>
-                                <button type="button" onclick="set()">提交</button>
-                            </td>
-                        </tr>
-                    </table>
+                    <form>
+                    </form>
                 </div>
             </div>
             <table class="table table-hover table-bordered table-striped">
                 <tr>
-                    <td colspan="14" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info">云计算龙极Server小组本周工作周报</td>
+                    <td colspan="14" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info">云计算龙极Server小组本周工作周报 
+                        <span class="pull-right">
+                            <button type="button" id="id-btn-addjob" class="btn btn-default" onclick="btn_click_addjob()">增加</button>
+                        </span>
+                    </td>
+                    
                 </tr>
                 <tr>
                     <td rowspan="2">任务</td>
@@ -188,6 +115,21 @@
                     <td>PM</td>
                     <td>PM</td>
                     <td>PM</td>
+                </tr>
+                <tr id="id-table-addjob" style="display:none">
+                    <td><input type="text" name="project" value="【】"/></td>
+                    <td><input type="text" name="classmate"/></td>
+                    <td><input type="checkbox" name="c11"/></td>
+                    <td><input type="checkbox" name="c12"/></td>
+                    <td><input type="checkbox" name="c21"/></td>
+                    <td><input type="checkbox" name="c22"/></td>
+                    <td><input type="checkbox" name="c31"/></td>
+                    <td><input type="checkbox" name="c32"/></td>
+                    <td><input type="checkbox" name="c41"/></td>
+                    <td><input type="checkbox" name="c42"/></td>
+                    <td><input type="checkbox" name="c51"/></td>
+                    <td><input type="checkbox" name="c52"/></td>
+                    <td><input type="text" name="info"/><button type="button" id="id-btn-submit-addjob" class="btn btn-default">提交</button></td>
                 </tr>
             </table>
             <table class="table table-hover table-bordered table-striped">
@@ -231,6 +173,21 @@
                     <td>PM</td>
                     <td>PM</td>
                     <td>PM</td>
+                </tr>
+                <tr id="id-table-addlastjob" style="display:none">
+                    <td><input type="text" name="project"/></td>
+                    <td><input type="text" name="classmate"/></td>
+                    <td><input type="checkbox" name="c11"/></td>
+                    <td><input type="checkbox" name="c12"/></td>
+                    <td><input type="checkbox" name="c21"/></td>
+                    <td><input type="checkbox" name="c22"/></td>
+                    <td><input type="checkbox" name="c31"/></td>
+                    <td><input type="checkbox" name="c32"/></td>
+                    <td><input type="checkbox" name="c41"/></td>
+                    <td><input type="checkbox" name="c42"/></td>
+                    <td><input type="checkbox" name="c51"/></td>
+                    <td><input type="checkbox" name="c52"/></td>
+                    <td><input type="text" name="info"/><button type="button" id="id-btn-submit-lastjob" class="btn btn-default">提交</button></td>
                 </tr>
             </table>
         </div>
