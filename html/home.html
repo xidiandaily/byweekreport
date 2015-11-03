@@ -104,8 +104,7 @@
                 </tr>
             </table>
             <table class="table table-hover table-bordered table-striped">
-                <tr>
-                    <td colspan="14" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info">云计算龙极Server小组上周工作周报</td>
+                <tr id="id-weekreport-lasttitle">
                 </tr>
                 <tr>
                     <td rowspan="2">任务</td>
@@ -131,7 +130,7 @@
                     <td></td>
                 </tr>
                 <tr id="id-table-addlastjob" style="display:none">
-                    <td><input type="text" name="project"/></td>
+                    <td><input type="text" name="job"/></td>
                     <td><input type="text" name="classmate"/></td>
                     <td><input type="checkbox" name="c11"/></td>
                     <td><input type="checkbox" name="c12"/></td>
@@ -143,7 +142,7 @@
                     <td><input type="checkbox" name="c42"/></td>
                     <td><input type="checkbox" name="c51"/></td>
                     <td><input type="checkbox" name="c52"/></td>
-                    <td><input type="text" name="info"/><button type="button" id="id-btn-submit-lastjob" class="btn btn-default">提交</button></td>
+                    <td><input type="text" name="process"/><button type="button" class="btn btn-default" onclick="btn_click_submit_addlastjob()">提交</button></td>
                 </tr>
             </table>
         </div>
@@ -166,6 +165,25 @@
             </tr>
         </script>
 
+        <script type="text/template" id="id-table-lastjob-template">
+            <%console.log(item);%>
+            <%var star=JSON.parse(item['plantime']);%>
+            <%var temp=['c11','c12','c21','c22','c31','c32','c41','c42','c51','c52'];%>
+            <tr class="template_generate">
+                <td class="hide" name="id"><%=item['id']%></td>
+                <td name="project"><%=item['job']%></td>
+                <td nmae="classmate"><%=item['classmate']%></td>
+                <%for(x in temp){ %>
+                    <%if(_.isUndefined(_.find(star,function(num){return num==temp[x]}))){%>
+                    <td name="<%=temp[x]%>"></td>
+                    <%}else{%>
+                    <td name="<%=temp[x]%>">★</td>
+                    <%}%>
+                <%}%>
+                <td><%=item['process']%><button type="button" class="pull-right btn btn-primmary" onclick="btn_click_submit_dellastjob(<%=item['id']%>)">删除</button></td>
+            </tr>
+        </script>
+
         <script type="text/template" id="id-weekreport-title-template">
             <td colspan="14" id="" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info template_generate">云计算Server<%=item%>本周工作周报
                 <span class="pull-right">
@@ -173,6 +191,18 @@
                     <button type="button" id="id-btn-addjob" class="btn btn-default" onclick="btn_click_addjob()">取消</button>
                     <%}else{ %>
                     <button type="button" id="id-btn-addjob" class="btn btn-default" onclick="btn_click_addjob()">增加</button>
+                    <%} %>
+                </span>
+            </td>
+        </script>
+
+        <script type="text/template" id="id-weekreport-lasttitle-template">
+            <td colspan="14" id="" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info template_generate">云计算Server<%=item%>上周工作周报
+                <span class="pull-right">
+                    <%if($("#id-table-addlastjob").is(":visible")){ %>
+                    <button type="button" id="id-btn-addlastjob" class="btn btn-default" onclick="btn_click_addlastweekjob()">取消</button>
+                    <%}else{ %>
+                    <button type="button" id="id-btn-addlastjob" class="btn btn-default" onclick="btn_click_addlastweekjob()">增加</button>
                     <%} %>
                 </span>
             </td>

@@ -38,6 +38,34 @@ if($action=='submit_addjob'){
         die();
     }
     echo json_encode(array('ret'=>'true','更新成功!'));
+}else if($action=='submit_addlastjob'){
+    $DB=new MySQL(Loader::$config['dbconf']['main']['dbname'],
+        Loader::$config['dbconf']['main']['user'],
+        Loader::$config['dbconf']['main']['passwd'],
+        Loader::$config['dbconf']['main']['host'],
+        Loader::$config['dbconf']['main']['port']);
+
+    $val=array('job'=>$req['job'],'classmate'=>$req['classmate'],'process'=>$req['process'],'teamname'=>$req['teamname'],'plantime'=>json_encode($req['plantime']));
+    $datatypes=array('str','str','int','str','str');
+    $ret=$DB->insert("lastweekjob",$val,'',$datatypes);
+    if(!$ret){
+        echo json_encode(array('ret'=>'false','更新失败!'));
+        die();
+    }
+    echo json_encode(array('ret'=>'true','更新成功!'));
+}else if($action=='submit_dellastjob'){
+    $DB=new MySQL(Loader::$config['dbconf']['main']['dbname'],
+        Loader::$config['dbconf']['main']['user'],
+        Loader::$config['dbconf']['main']['passwd'],
+        Loader::$config['dbconf']['main']['host'],
+        Loader::$config['dbconf']['main']['port']);
+    $sql="update lastweekjob set enable=0 where id=".$req;
+    $ret=$DB->executeSQL($sql);
+    if(!$ret){
+        echo json_encode(array('ret'=>'false','更新失败!'));
+        die();
+    }
+    echo json_encode(array('ret'=>'true','更新成功!'));
 }else if($action=='get_teamname_list'){
     $DB=new MySQL(Loader::$config['dbconf']['main']['dbname'],
         Loader::$config['dbconf']['main']['user'],
@@ -91,12 +119,29 @@ if($action=='submit_addjob'){
     }else{
         $sql="select * from curweekjob where enable!=0 and teamname='$teamname' and timestamp > $begin_time;";
     }
-    $ret=$DB->executeSQL($sql);
-    if(!$ret){
+    $week=$DB->executeSQL($sql);
+    if(!$week){
         echo json_encode(array('ret'=>'false','获取失败!'));
         die();
     }
-    echo json_encode(array('ret'=>'true','resp'=>$ret));
+
+    if(empty($teamname) || $teamname=='ALL'){
+        $sql="select * from lastweekjob where enable!=0 and timestamp > $begin_time;";
+    }else{
+        $sql="select * from lastweekjob where enable!=0 and teamname='$teamname' and timestamp > $begin_time;";
+    }
+
+    $DB2=new MySQL(Loader::$config['dbconf']['main']['dbname'],
+        Loader::$config['dbconf']['main']['user'],
+        Loader::$config['dbconf']['main']['passwd'],
+        Loader::$config['dbconf']['main']['host'],
+        Loader::$config['dbconf']['main']['port']);
+    $lastweek=$DB2->executeSQL($sql);
+    if(!$lastweek){
+        echo json_encode(array('ret'=>'false','获取失败!'));
+        die();
+    }
+    echo json_encode(array('ret'=>'true','resp'=>array("week"=>$week,"lastweek"=>$lastweek)));
 }else{
     echo json_encode(array('ret'=>'false','无效操作!!'));
 }
