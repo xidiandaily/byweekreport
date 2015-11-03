@@ -82,6 +82,24 @@ function btn_click_submit_addjob(){
     });
 }
 
+function btn_click_submit_deljob(id){
+    console.log("btn_click_submit_deljob");
+    var data=new Object();
+    data.action="submit_deljob";
+    data.req=id;
+
+    $.ajax({
+        type:"POST",
+        url:g_jsconfig.adjax_url,
+        dataType:"json",
+        data:data,
+    }).done(function(resp){
+        if(resp.ret=='true'){
+            init_joblist();
+        }
+    });
+}
+
 function init_joblist(){
     $.ajax({
         type:"POST",
@@ -89,15 +107,13 @@ function init_joblist(){
         dataType:"json",
         data:{"action":"get_joblist","req":{"teamname":"ALL","weekcount":"1"}},
     }).done(function(resp){
-        console.log(resp);
         if(resp.ret=='true'){
-            var temp= _.template($("#id_project_item_template").html());
-            $("#id_project_item").html("");
-            for (x in resp['projectlist']){
-                var rest=temp({item:resp['projectlist'][x]});
-                $("#id_project_item").append($.parseHTML(rest));
+            $(".template_generate").detach();
+            var temp= _.template($("#id-table-job-template").html());
+            for (x in resp['resp']){
+                var rest=temp({item:resp['resp'][x]});
+                $("#id-table-addjob").before($.parseHTML(rest));
             }
-            init_project_item_click();
         }
     });
 }

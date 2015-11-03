@@ -25,6 +25,19 @@ if($action=='submit_addjob'){
         die();
     }
     echo json_encode(array('ret'=>'true','更新成功!'));
+}else if($action=='submit_deljob'){
+    $DB=new MySQL(Loader::$config['dbconf']['main']['dbname'],
+        Loader::$config['dbconf']['main']['user'],
+        Loader::$config['dbconf']['main']['passwd'],
+        Loader::$config['dbconf']['main']['host'],
+        Loader::$config['dbconf']['main']['port']);
+    $sql="update curweekjob set enable=0 where id=".$req;
+    $ret=$DB->executeSQL($sql);
+    if(!$ret){
+        echo json_encode(array('ret'=>'false','更新失败!'));
+        die();
+    }
+    echo json_encode(array('ret'=>'true','更新成功!'));
 }else if($action=='get_teamname_list'){
     $DB=new MySQL(Loader::$config['dbconf']['main']['dbname'],
         Loader::$config['dbconf']['main']['user'],
@@ -74,9 +87,9 @@ if($action=='submit_addjob'){
     $begin_time=strtotime("-$weekcount Monday");
 
     if(empty($teamname) || $teamname=='ALL'){
-        $sql="select * from curweekjob where timestamp > $begin_time;";
+        $sql="select * from curweekjob where enable!=0 and timestamp > $begin_time;";
     }else{
-        $sql="select * from curweekjob where teamname='$teamname' and timestamp > $begin_time;";
+        $sql="select * from curweekjob where enable!=0 and teamname='$teamname' and timestamp > $begin_time;";
     }
     $ret=$DB->executeSQL($sql);
     if(!$ret){

@@ -111,6 +111,7 @@
                     <td></td>
                 </tr>
                 <tr>
+                    <td class="hide" name="id">1</td>
                     <td>项目名称</td>
                     <td>负责人</td>
                     <td>AM</td>
@@ -168,21 +169,6 @@
                     <td>PM</td>
                     <td></td>
                 </tr>
-                <tr>
-                    <td>项目名称</td>
-                    <td>负责人</td>
-                    <td>AM</td>
-                    <td>PM</td>
-                    <td>AM</td>
-                    <td>PM</td>
-                    <td>AM</td>
-                    <td>PM</td>
-                    <td>AM</td>
-                    <td>PM</td>
-                    <td>PM</td>
-                    <td>PM</td>
-                    <td>PM</td>
-                </tr>
                 <tr id="id-table-addlastjob" style="display:none">
                     <td><input type="text" name="project"/></td>
                     <td><input type="text" name="classmate"/></td>
@@ -200,6 +186,23 @@
                 </tr>
             </table>
         </div>
+        <script type="text/template" id="id-table-job-template">
+            <%var star=JSON.parse(item['plantime']);%>
+            <%var temp=['c11','c12','c21','c22','c31','c32','c41','c42','c51','c52'];%>
+            <tr class="template_generate">
+                <td class="hide" name="id"><%=item['id']%></td>
+                <td name="project"><%=item['job']%></td>
+                <td nmae="classmate"><%=item['classmate']%></td>
+                <%for(x in temp){ %>
+                    <%if(_.isUndefined(_.find(star,function(num){return num==temp[x]}))){%>
+                    <td name="<%=temp[x]%>"></td>
+                    <%}else{%>
+                    <td name="<%=temp[x]%>">★</td>
+                    <%}%>
+                <%}%>
+                <td><%=item['info']%><button type="button" class="pull-right btn btn-primmary" onclick="btn_click_submit_deljob(<%=item['id']%>)">删除</button></td>
+            </tr>
+        </script>
     </body>
 </html>
 
