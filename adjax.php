@@ -65,11 +65,18 @@ if($action=='submit_addjob'){
         Loader::$config['dbconf']['main']['host'],
         Loader::$config['dbconf']['main']['port']);
 
-    $teamname=$req['teamname'];
+    $teamname=$req['teamname'];   //项目组名称(默认是全部）
+    $weekcount=$req['weekcount']; //最近几周(默认是一周）
+    if(empty($weekcount)){
+        $weekcount=1;
+    }
+
+    $begin_time=strtotime("-$weekcount Monday");
+
     if(empty($teamname) || $teamname=='ALL'){
-        $sql="select * from curweekjob;";
+        $sql="select * from curweekjob where timestamp > $begin_time;";
     }else{
-        $sql="select * from curweekjob where teamname='$teamname';";
+        $sql="select * from curweekjob where teamname='$teamname' and timestamp > $begin_time;";
     }
     $ret=$DB->executeSQL($sql);
     if(!$ret){

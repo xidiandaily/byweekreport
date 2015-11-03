@@ -77,25 +77,28 @@ function btn_click_submit_addjob(){
         data:data,
     }).done(function(resp){
         if(resp.ret=='true'){
-            init_curweek_job();
+            init_joblist();
         }
     });
 }
 
-function init_curweek_job(){
+function init_joblist(){
     $.ajax({
         type:"POST",
         url:g_jsconfig.adjax_url,
         dataType:"json",
-        data:{"action":"get_curweek_job"},
+        data:{"action":"get_joblist","req":{"teamname":"ALL","weekcount":"1"}},
     }).done(function(resp){
-        var temp= _.template($("#id_project_item_template").html());
-        $("#id_project_item").html("");
-        for (x in resp['projectlist']){
-            var rest=temp({item:resp['projectlist'][x]});
-            $("#id_project_item").append($.parseHTML(rest));
+        console.log(resp);
+        if(resp.ret=='true'){
+            var temp= _.template($("#id_project_item_template").html());
+            $("#id_project_item").html("");
+            for (x in resp['projectlist']){
+                var rest=temp({item:resp['projectlist'][x]});
+                $("#id_project_item").append($.parseHTML(rest));
+            }
+            init_project_item_click();
         }
-        init_project_item_click();
     });
 }
 
@@ -116,17 +119,6 @@ function init_classmate(){
         url:g_jsconfig.adjax_url,
         dataType:"json",
         data:{"action":"get_classmate_list","req":{"teamname":"ALL"}},
-    }).done(function(resp){
-        console.log(resp);
-    });
-}
-
-function init_joblist(){
-    $.ajax({
-        type:"POST",
-        url:g_jsconfig.adjax_url,
-        dataType:"json",
-        data:{"action":"get_joblist","req":{"teamname":"ALL"}},
     }).done(function(resp){
         console.log(resp);
     });
