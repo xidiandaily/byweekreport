@@ -4,7 +4,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-        <title>Weekly Reporter</title>
+        <title>周报编写工具</title>
 
         <!-- 新 Bootstrap 核心 CSS 文件 -->
         <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -25,63 +25,215 @@
         <![endif]-->
     </head>
     <body>
-        <table class="table table-hover table-bordered table-striped">
-            <tr>
-                <td colspan="14" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info">云计算龙极Server小组本周工作周报 </td>
-            </tr>
-            <tr>
-                <td rowspan="2">任务</td>
-                <td rowspan="2">负责人</td>
-                <td colspan="2">周一</td>
-                <td colspan="2">周二</td>
-                <td colspan="2">周三</td>
-                <td colspan="2">周四</td>
-                <td colspan="2">周五</td>
-                <td>备注</td>
-            </tr>
-            <tr>
-                <td>AM</td>
-                <td>PM</td>
-                <td>AM</td>
-                <td>PM</td>
-                <td>AM</td>
-                <td>PM</td>
-                <td>AM</td>
-                <td>PM</td>
-                <td>AM</td>
-                <td>PM</td>
-                <td></td>
-            </tr>
-        </table>
-        <table class="table table-hover table-bordered table-striped">
-            <tr>
-                <td colspan="14" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info">云计算龙极Server小组本周工作周报 </td>
-            </tr>
-            <tr>
-                <td rowspan="2">任务</td>
-                <td rowspan="2">负责人</td>
-                <td colspan="2">周一</td>
-                <td colspan="2">周二</td>
-                <td colspan="2">周三</td>
-                <td colspan="2">周四</td>
-                <td colspan="2">周五</td>
-                <td>完成进度</td>
-            </tr>
-            <tr>
-                <td>AM</td>
-                <td>PM</td>
-                <td>AM</td>
-                <td>PM</td>
-                <td>AM</td>
-                <td>PM</td>
-                <td>AM</td>
-                <td>PM</td>
-                <td>AM</td>
-                <td>PM</td>
-                <td></td>
-            </tr>
-        </table>
-
+        <div class="container">
+            <div>
+                <head>
+                    <h1>周报编写工具</h1>
+                </head>
+                <div>
+                    <div class="pull-right">
+                        <div class="col-md-6">
+                            <span class="col-md-4"><strong>小组:</strong></span>
+                            <div class="dropdown col-md-8">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Dropdown
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="col-md-6"><strong>用户名:</strong></span>
+                            <div class="dropdown col-md-6">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Dropdown
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-hover table-bordered table-striped">
+                        <tr>
+                            <td rowspan="2">任务</td>
+                            <td rowspan="2">负责人</td>
+                            <td colspan="2">周一</td>
+                            <td colspan="2">周二</td>
+                            <td colspan="2">周三</td>
+                            <td colspan="2">周四</td>
+                            <td colspan="2">周五</td>
+                            <td>备注</td>
+                            <td>上周吗?</td>
+                            <td>操作</td>
+                            <tr>
+                                <td>AM</td>
+                                <td>PM</td>
+                                <td>AM</td>
+                                <td>PM</td>
+                                <td>AM</td>
+                                <td>PM</td>
+                                <td>AM</td>
+                                <td>PM</td>
+                                <td>AM</td>
+                                <td>PM</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tr>
+                        <tr>
+                            <td><input type="text" id="task" size="50" value="【】"/></td>
+                            <td>
+                                <select id="name">
+                                    <option value ="史岳斌">史岳斌</option>
+                                    <option value ="芦少军">芦少军</option>
+                                    <option value ="杜智超">杜智超</option>
+                                    <option value ="王焕林">王焕林</option>
+                                    <option value= "曾祯">曾祯</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="c00"/>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="c01"/>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="c10"/>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="c11"/>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="c20"/>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="c21"/>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="c30"/>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="c31"/>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="c40"/>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="c41"/>
+                            </td>
+                            <td>
+                                <input type="text" id="remark" size="50"/>
+                            </td>
+                            <td>
+                                <select id="type">
+                                    <option value="0">上周</option>
+                                    <option value="1">本周</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button type="button" onclick="set()">提交</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <table class="table table-hover table-bordered table-striped">
+                <tr>
+                    <td colspan="14" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info">云计算龙极Server小组本周工作周报</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">任务</td>
+                    <td rowspan="2">负责人</td>
+                    <td colspan="2">周一</td>
+                    <td colspan="2">周二</td>
+                    <td colspan="2">周三</td>
+                    <td colspan="2">周四</td>
+                    <td colspan="2">周五</td>
+                    <td>备注</td>
+                </tr>
+                <tr>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>项目名称</td>
+                    <td>负责人</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>PM</td>
+                    <td>PM</td>
+                    <td>PM</td>
+                </tr>
+            </table>
+            <table class="table table-hover table-bordered table-striped">
+                <tr>
+                    <td colspan="14" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info">云计算龙极Server小组上周工作周报</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">任务</td>
+                    <td rowspan="2">负责人</td>
+                    <td colspan="2">周一</td>
+                    <td colspan="2">周二</td>
+                    <td colspan="2">周三</td>
+                    <td colspan="2">周四</td>
+                    <td colspan="2">周五</td>
+                    <td>完成进度</td>
+                </tr>
+                <tr>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>项目名称</td>
+                    <td>负责人</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>AM</td>
+                    <td>PM</td>
+                    <td>PM</td>
+                    <td>PM</td>
+                    <td>PM</td>
+                </tr>
+            </table>
+        </div>
     </body>
 </html>
 
