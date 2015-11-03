@@ -62,13 +62,7 @@
                 </div>
             </div>
             <table class="table table-hover table-bordered table-striped">
-                <tr>
-                    <td colspan="14" id="id-weekreport-title" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info">
-                        <span class="pull-right">
-                            <button type="button" id="id-btn-addjob" class="btn btn-default" onclick="btn_click_addjob()">增加</button>
-                        </span>
-                    </td>
-                    
+                <tr id="id-weekreport-title">
                 </tr>
                 <tr>
                     <td rowspan="2">任务</td>
@@ -154,6 +148,7 @@
             </table>
         </div>
         <script type="text/template" id="id-table-job-template">
+            <%console.log(item);%>
             <%var star=JSON.parse(item['plantime']);%>
             <%var temp=['c11','c12','c21','c22','c31','c32','c41','c42','c51','c52'];%>
             <tr class="template_generate">
@@ -170,6 +165,19 @@
                 <td><%=item['info']%><button type="button" class="pull-right btn btn-primmary" onclick="btn_click_submit_deljob(<%=item['id']%>)">删除</button></td>
             </tr>
         </script>
+
+        <script type="text/template" id="id-weekreport-title-template">
+            <td colspan="14" id="" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info template_generate">云计算Server<%=item%>本周工作周报
+                <span class="pull-right">
+                    <%if($("#id-table-addjob").is(":visible")){ %>
+                    <button type="button" id="id-btn-addjob" class="btn btn-default" onclick="btn_click_addjob()">取消</button>
+                    <%}else{ %>
+                    <button type="button" id="id-btn-addjob" class="btn btn-default" onclick="btn_click_addjob()">增加</button>
+                    <%} %>
+                </span>
+            </td>
+        </script>
+
     </body>
 </html>
 

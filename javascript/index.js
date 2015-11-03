@@ -62,7 +62,7 @@ function btn_click_submit_addjob(){
     req.job=$("#id-table-addjob input[name='job']").val();
     req.classmate=$("#id-table-addjob input[name='classmate']").val();
     req.info=$("#id-table-addjob input[name='info']").val();
-    req.teamname='麻将小组';
+    req.teamname=$("#id-select-teamname").val();
     req.plantime=new Array();
 
     $("#id-table-addjob input:checked").each(function(){
@@ -119,22 +119,22 @@ function init_joblist(){
         if(resp.ret=='true'){
             $(".template_generate").detach();
             var temp= _.template($("#id-table-job-template").html());
+            console.log(resp);
             for (x in resp['resp']){
+                console.log(x);
                 var rest=temp({item:resp['resp'][x]});
                 $("#id-table-addjob").before($.parseHTML(rest));
             }
-        }
-    });
-}
 
-function init_teamname(){
-    $.ajax({
-        type:"POST",
-        url:g_jsconfig.adjax_url,
-        dataType:"json",
-        data:{"action":"get_teamname_list"}
-    }).done(function(resp){
-        console.log(resp);
+            var temp2= _.template($("#id-weekreport-title-template").html());
+            var rest2;
+            if($.cookie("teamname")=="ALL"){
+                rest2=temp2({item:"业务一组二组"});
+            }else{
+                rest2=temp2({item:$.cookie("teamname")});
+            }
+            $("#id-weekreport-title").append($.parseHTML(rest2));
+        }
     });
 }
 
@@ -154,12 +154,6 @@ function init_teamname(){
         $.cookie('teamname',"ALL",{expires:14,path:'/'});
     }
     $("#id-select-teamname").val($.cookie('teamname'));
-    if($.cookie('teamname')=='ALL'){
-        $("#id-weekreport-title").text("云计算Server业务一二组本周工作周报");
-    }else{
-        $("#id-weekreport-title").text("云计算Server"+$.cookie('teamname')+"本周工作周报");
-    }
-
     $("#id-select-weekcount").val("1");
     $("#id-select-teamname").change(function(){
         if($("#id-table-addjob").is(":visible")){
@@ -168,11 +162,6 @@ function init_teamname(){
             return;
         }
         $.cookie('teamname',$("#id-select-teamname").val(),{expires:14,path:'/'});
-        if($.cookie('teamname')=='ALL'){
-            $("#id-weekreport-title").text("云计算Server业务一二组本周工作周报");
-        }else{
-            $("#id-weekreport-title").text("云计算Server"+$.cookie('teamname')+"本周工作周报");
-        }
         init_joblist();
     });
 
@@ -185,6 +174,5 @@ $(function(){
     init_teamname();
     init_classmate();
     init_joblist();
-    init_teamname();
 });
 

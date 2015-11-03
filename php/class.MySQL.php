@@ -356,9 +356,9 @@ class MySQL {
     // 'Arrays' multiple result
     public function arrayResults(){
 
-        if($this->records == 1){
-            return $this->arrayResult();
-        }
+        //if($this->records == 1){
+        //    return $this->arrayResult();
+        //}
 
         $this->arrayedResult = array();
         while ($data = mysql_fetch_assoc($this->result)){
