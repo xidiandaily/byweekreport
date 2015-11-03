@@ -55,14 +55,15 @@ function btn_click_submit_addjob(){
     console.log("btn_click_submit_addjob");
     var data=new Object();
     var req=new Object();
-    req.project=$("#id-table-addjob input[name='project']").val();
+    req.job=$("#id-table-addjob input[name='job']").val();
     req.classmate=$("#id-table-addjob input[name='classmate']").val();
     req.info=$("#id-table-addjob input[name='info']").val();
-    req.date=new Array();
+    req.teamname='麻将小组';
+    req.plantime=new Array();
 
     $("#id-table-addjob input:checked").each(function(){
         console.log($(this).attr("name"));
-        req.date.push($(this).attr("name"));
+        req.plantime.push($(this).attr("name"));
     });
     console.log(req);
 
@@ -98,8 +99,42 @@ function init_curweek_job(){
     });
 }
 
+function init_teamname(){
+    $.ajax({
+        type:"POST",
+        url:g_jsconfig.adjax_url,
+        dataType:"json",
+        data:{"action":"get_teamname_list"},
+    }).done(function(resp){
+        console.log(resp);
+    });
+}
+
+function init_classmate(){
+    $.ajax({
+        type:"POST",
+        url:g_jsconfig.adjax_url,
+        dataType:"json",
+        data:{"action":"get_classmate_list","req":{"teamname":"ALL"}},
+    }).done(function(resp){
+        console.log(resp);
+    });
+}
+
+function init_joblist(){
+    $.ajax({
+        type:"POST",
+        url:g_jsconfig.adjax_url,
+        dataType:"json",
+        data:{"action":"get_joblist","req":{"teamname":"ALL"}},
+    }).done(function(resp){
+        console.log(resp);
+    });
+}
+
 $(function(){
-    //btn_click_addjob();
-    //init_calc();
+    init_teamname();
+    //init_classmate();
+    //init_joblist();
 });
 
