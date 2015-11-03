@@ -1,5 +1,5 @@
 <?php
-die();
+
 include 'php/Loader.php';
 include 'php/config.inc.php';
 include 'php/class.DBPDO.php';
@@ -10,9 +10,7 @@ $req=$_REQUEST['req'];
 
 $cookie=$_COOKIE;
 
-if(empty($action)){
-    showMessage("非法操作！");
-}else if($action=='submit_addjob'){
+if($action=='submit_addjob'){
     $DB=new MySQL(Loader::$config['dbconf']['main']['dbname'],
         Loader::$config['dbconf']['main']['user'],
         Loader::$config['dbconf']['main']['passwd'],
@@ -73,12 +71,13 @@ if(empty($action)){
     }else{
         $sql="select * from curweekjob where teamname='$teamname';";
     }
-
-    $ret=$DB->($sql);
+    $ret=$DB->executeSQL($sql);
     if(!$ret){
         echo json_encode(array('ret'=>'false','获取失败!'));
         die();
     }
     echo json_encode(array('ret'=>'true','resp'=>$ret));
+}else{
+    echo json_encode(array('ret'=>'false','无效操作!!'));
 }
 

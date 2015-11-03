@@ -104,7 +104,7 @@ function init_teamname(){
         type:"POST",
         url:g_jsconfig.adjax_url,
         dataType:"json",
-        data:{"action":"get_teamname_list"},
+        data:{"action":"get_teamname_list"}
     }).done(function(resp){
         console.log(resp);
     });
@@ -134,7 +134,7 @@ function init_joblist(){
 
 $(function(){
     init_teamname();
-    //init_classmate();
-    //init_joblist();
+    init_classmate();
+    init_joblist();
 });
 
