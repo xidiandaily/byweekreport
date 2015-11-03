@@ -151,10 +151,15 @@ function init_classmate(){
 
 function init_teamname(){
     if($.cookie('teamname')==null || $.cookie('teamname')==''){
-        $("#id-select-teamname").val("麻将小组");
-    }else{
-        $("#id-select-teamname").val($.cookie('teamname'));
+        $.cookie('teamname',"ALL",{expires:14,path:'/'});
     }
+    $("#id-select-teamname").val($.cookie('teamname'));
+    if($.cookie('teamname')=='ALL'){
+        $("#id-weekreport-title").text("云计算Server业务一二组本周工作周报");
+    }else{
+        $("#id-weekreport-title").text("云计算Server"+$.cookie('teamname')+"本周工作周报");
+    }
+
     $("#id-select-weekcount").val("1");
     $("#id-select-teamname").change(function(){
         if($("#id-table-addjob").is(":visible")){
@@ -163,6 +168,11 @@ function init_teamname(){
             return;
         }
         $.cookie('teamname',$("#id-select-teamname").val(),{expires:14,path:'/'});
+        if($.cookie('teamname')=='ALL'){
+            $("#id-weekreport-title").text("云计算Server业务一二组本周工作周报");
+        }else{
+            $("#id-weekreport-title").text("云计算Server"+$.cookie('teamname')+"本周工作周报");
+        }
         init_joblist();
     });
 
