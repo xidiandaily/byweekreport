@@ -170,6 +170,7 @@ function btn_click_submit_dellastjob(id){
 
 function btn_show_hide_button(){
     $(".btn").hide();
+    $("table").addClass("table-condensed");
     alert("所有按钮已经隐藏，请手动复制!");
 }
 
