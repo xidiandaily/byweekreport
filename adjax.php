@@ -4,6 +4,7 @@ include 'php/Loader.php';
 include 'php/config.inc.php';
 include 'php/class.DBPDO.php';
 include 'php/class.MySQL.php';
+include 'php/to_csv_gcal.php';
 
 $action=$_REQUEST['action'];
 $req=$_REQUEST['req'];
@@ -142,6 +143,38 @@ if($action=='submit_addjob'){
         die();
     }
     echo json_encode(array('ret'=>'true','resp'=>array("week"=>$week,"lastweek"=>$lastweek)));
+}else if($action=='download_csv'){
+    $DB=new MySQL(Loader::$config['dbconf']['main']['dbname'],
+        Loader::$config['dbconf']['main']['user'],
+        Loader::$config['dbconf']['main']['passwd'],
+        Loader::$config['dbconf']['main']['host'],
+        Loader::$config['dbconf']['main']['port']);
+
+    $teamname=$req['teamname'];   //项目组名称(默认是全部）
+    $weekcount=$req['weekcount']; //最近几周(默认是一周）
+    if(empty($weekcount)){
+        $weekcount=1;
+    }
+
+    $begin_time=strtotime("-$weekcount Monday");
+
+    if(empty($teamname) || $teamname=='ALL'){
+        $sql="select * from curweekjob where enable!=0 and timestamp > $begin_time;";
+    }else{
+        $sql="select * from curweekjob where enable!=0 and teamname='$teamname' and timestamp > $begin_time;";
+    }
+    $week=$DB->executeSQL($sql);
+    if(!$week){
+        echo json_encode(array('ret'=>'false','获取失败!'));
+        die();
+    }
+    CCal2CSV::DownLoadCSV($week);
+    //$ret=CCal2CSV::DownLoadCSV($week);
+    //if(!$ret){
+    //    echo json_encode(array('ret'=>'false','获取失败!'));
+    //    die();
+    //}
+    //echo json_encode(array('ret'=>'true','获取成功!'));
 }else{
     echo json_encode(array('ret'=>'false','无效操作!!'));
 }

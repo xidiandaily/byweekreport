@@ -174,6 +174,29 @@ function btn_show_hide_button(){
     alert("所有按钮已经隐藏，请手动复制!");
 }
 
+function btn_download_csv(){
+    var data=new Object();
+    data.action="download_csv";
+    data.req=new Object();
+    data.req.teamname=$("#id-select-teamname").val();
+    data.req.weekcount=$("#id-select-weekcount").val();
+
+    var newurl=g_jsconfig.adjax_url+"?action="+data.action+"&req[teamname]="+data.req.teamname+"&req[weekcount]="+data.req.weekcount;
+    window.open(newurl,'_blank');
+
+    //$.ajax({
+    //    type:"POST",
+    //    url:g_jsconfig.adjax_url,
+    //    dataType:"json",
+    //    data:data,
+    //}).done(function(resp){
+    //    console.log(resp);
+    //    if(resp.ret=='false'){
+    //        alert("导出失败!");
+    //    }
+    //});
+}
+
 function init_joblist(){
     var data=new Object();
     data.action="get_joblist";
