@@ -41,6 +41,11 @@
             <div>
                 <div>
                     <h1>周报编写工具</h1>
+                    <p class="bg-warning "> 
+                    以后大家的周报在这上面写，写好之后，每个小组由一个人粘贴到邮件中再发出来。</br>
+                    1.复制到邮件之前，记得先点击右上角“隐藏按钮”；</br>
+                    2.和google日志同步是通过 csv 文件同步的。先导出csv文件，自己手动导入到自己的日历中；也可以把谷歌账号给我，我把共享一下我的周报日历，这样就不需要每个人都自己导入一次了。</br>
+                    </p>
                 </div>
                 <div>
                     <div class="col-md-12">
@@ -58,8 +63,8 @@
                                 <option value="3">最近3周</option>
                                 <option value="4">最近4周</option>
                             </select>
-                            <button class="btn btn-primmary btn-sm col-md-2" onclick="btn_show_hide_button()">隐藏按钮</button>
-                            <button class="btn btn-primmary btn-sm col-md-2" onclick="btn_download_csv()">导出csv</button>
+                            <button class="btn btn-small btn-primary col-md-2" onclick="btn_show_hide_button()">隐藏按钮</button>
+                            <button class="btn btn-small btn-primary col-md-2" onclick="btn_download_csv()">导出csv</button>
                         </div>
                     </div>
                 </div>
@@ -75,6 +80,7 @@
                     <td colspan="2">周三</td>
                     <td colspan="2">周四</td>
                     <td colspan="2">周五</td>
+                    <td class="by_hide">时间</td>
                     <td>备注</td>
                 </tr>
                 <tr>
@@ -88,6 +94,7 @@
                     <td>PM</td>
                     <td>AM</td>
                     <td>PM</td>
+                    <td></td>
                     <td></td>
                 </tr>
                 <tr id="id-table-addjob" style="display:none">
@@ -103,7 +110,8 @@
                     <td><input type="checkbox" name="c42"/></td>
                     <td><input type="checkbox" name="c51"/></td>
                     <td><input type="checkbox" name="c52"/></td>
-                    <td><input type="text" name="info"/><button type="button" class="btn btn-default" onclick="btn_click_submit_addjob()">提交</button></td>
+                    <td></td>
+                    <td><input type="text" name="info"/><button type="button" class="btn btn-mini" onclick="btn_click_submit_addjob()">提交</button></td>
                 </tr>
             </table>
             <table class="table table-hover table-bordered table-striped">
@@ -117,6 +125,7 @@
                     <td colspan="2">周三</td>
                     <td colspan="2">周四</td>
                     <td colspan="2">周五</td>
+                    <td class="by_hide"><small>时间</small></td>
                     <td>完成进度</td>
                 </tr>
                 <tr>
@@ -145,7 +154,8 @@
                     <td><input type="checkbox" name="c42"/></td>
                     <td><input type="checkbox" name="c51"/></td>
                     <td><input type="checkbox" name="c52"/></td>
-                    <td><input type="text" name="process"/><button type="button" class="btn btn-default" onclick="btn_click_submit_addlastjob()">提交</button></td>
+                    <td></td>
+                    <td><input type="text" name="process"/><button type="button" class="btn btn-mini" onclick="btn_click_submit_addlastjob()">提交</button></td>
                 </tr>
             </table>
         </div>
@@ -164,7 +174,8 @@
                     <td name="<%=temp[x]%>">★</td>
                     <%}%>
                 <%}%>
-                <td><%=item['info']%><button type="button" class="pull-right btn btn-primmary" onclick="btn_click_submit_deljob(<%=item['id']%>)">删除</button></td>
+                <td name="timestamp" class="by_hide"><small><%=logic_timestamp_2_date(item['timestamp'])%></small></td>
+                <td><%=item['info']%><button type="button" class="pull-right btn btn-mini" onclick="btn_click_submit_deljob(<%=item['id']%>)">删除</button></td>
             </tr>
         </script>
 
@@ -183,7 +194,8 @@
                     <td name="<%=temp[x]%>">★</td>
                     <%}%>
                 <%}%>
-                <td><%=item['process']%><button type="button" class="pull-right btn btn-primmary" onclick="btn_click_submit_dellastjob(<%=item['id']%>)">删除</button></td>
+                <td name="timestamp" class="by_hide"><small><%=logic_timestamp_2_date(item['timestamp'])%></small></td>
+                <td><%=item['process']%><button type="button" class="pull-right btn btn-mini" onclick="btn_click_submit_dellastjob(<%=item['id']%>)">删除</button></td>
             </tr>
         </script>
 

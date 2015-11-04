@@ -1,3 +1,22 @@
+function logic_timestamp_2_date(tstamp){
+    // create a new javascript Date object based on the timestamp
+    // multiplied by 1000 so that the argument is in milliseconds, not seconds
+    var date = new Date(tstamp);
+
+    // year
+    var year=date.getFullYear();
+    // month
+    var m=1+date.getMonth();
+    var month="0"+m;
+    // day
+    var day="0"+date.getDate();
+
+    // will display time in 10:30:23 format
+    var formattedTime = year+ '/'+month.substr(month.length-2)+'/'+day.substr(day.length-2);
+
+    return formattedTime;
+}
+
 function btn_click_show_calc(id,reportstr){
     var reportid=0;
     $('.header_class_reportstr_item').filter(function(index){
@@ -170,6 +189,7 @@ function btn_click_submit_dellastjob(id){
 
 function btn_show_hide_button(){
     $(".btn").hide();
+    $(".by_hide").hide();
     $("table").addClass("table-condensed");
     alert("所有按钮已经隐藏，请手动复制!");
 }
