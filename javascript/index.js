@@ -116,6 +116,9 @@ function btn_click_submit_addjob(){
     }).done(function(resp){
         if(resp.ret=='true'){
             init_joblist();
+            $("#id-table-addjob [name='job']").val("【】");
+            $("#id-table-addjob [name='info']").val("");
+            $("#id-table-addjob :checkbox").prop( "checked", false);
         }
     });
 }
@@ -165,6 +168,9 @@ function btn_click_submit_addlastjob(){
     }).done(function(resp){
         if(resp.ret=='true'){
             init_joblist();
+            $("#id-table-addlastjob [name='job']").val("【】");
+            $("#id-table-addlastjob [name='process']").val("90");
+            $("#id-table-addlastjob :checkbox").prop( "checked", false);
         }
     });
 }
