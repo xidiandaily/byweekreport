@@ -113,23 +113,29 @@ if($action=='submit_addjob'){
         $weekcount=1;
     }
 
-    $begin_time=strtotime("-$weekcount Monday");
+    $begin_time=strtotime("-$weekcount Sunday");
+    $end_time=$begin_time+$weekcount*7*86400;
+    
+    $begin_time=strftime("%Y-%m-%d %H:%M:%S",$begin_time);
+    $end_time=strftime("%Y-%m-%d %H:%M:%S",$end_time);
 
     if(empty($teamname) || $teamname=='ALL'){
-        $sql="select * from curweekjob where enable!=0 and timestamp > $begin_time;";
+        $sql="select * from curweekjob where enable!=0 and timestamp >= '$begin_time' and timestamp <='$end_time';";
     }else{
-        $sql="select * from curweekjob where enable!=0 and teamname='$teamname' and timestamp > $begin_time;";
+        $sql="select * from curweekjob where enable!=0 and teamname='$teamname' and timestamp >= '$begin_time' and timestamp<='$end_time';";
     }
+
     $week=$DB->executeSQL($sql);
     if(!$week){
-        echo json_encode(array('ret'=>'false','获取失败!'));
+        echo json_encode(array('ret'=>'false','获取工作计划失败!'.$DB->lastError));
         die();
     }
 
+
     if(empty($teamname) || $teamname=='ALL'){
-        $sql="select * from lastweekjob where enable!=0 and timestamp > $begin_time;";
+        $sql="select * from lastweekjob where enable!=0 and timestamp >= '$begin_time' and timestamp<='$end_time';";
     }else{
-        $sql="select * from lastweekjob where enable!=0 and teamname='$teamname' and timestamp > $begin_time;";
+        $sql="select * from lastweekjob where enable!=0 and teamname='$teamname' and timestamp >= '$begin_time' and timestamp<='$end_time';";
     }
 
     $DB2=new MySQL(Loader::$config['dbconf']['main']['dbname'],
@@ -139,7 +145,7 @@ if($action=='submit_addjob'){
         Loader::$config['dbconf']['main']['port']);
     $lastweek=$DB2->executeSQL($sql);
     if(!$lastweek){
-        echo json_encode(array('ret'=>'false','获取失败!'));
+        echo json_encode(array('ret'=>'false','获取工作总结失败!'.$DB2->lastError));
         die();
     }
     echo json_encode(array('ret'=>'true','resp'=>array("week"=>$week,"lastweek"=>$lastweek)));
@@ -156,16 +162,21 @@ if($action=='submit_addjob'){
         $weekcount=1;
     }
 
-    $begin_time=strtotime("-$weekcount Monday");
+    $begin_time=strtotime("-$weekcount Sunday");
+    $end_time=$begin_time+$weekcount*7*86400;
+
+    $begin_time=strftime("%Y-%m-%d %H:%M:%S",$begin_time);
+    $end_time=strftime("%Y-%m-%d %H:%M:%S",$end_time);
 
     if(empty($teamname) || $teamname=='ALL'){
-        $sql="select * from curweekjob where enable!=0 and timestamp > $begin_time;";
+        $sql="select * from curweekjob where enable!=0 and timestamp >= '$begin_time' and timestamp <='$end_time';";
     }else{
-        $sql="select * from curweekjob where enable!=0 and teamname='$teamname' and timestamp > $begin_time;";
+        $sql="select * from curweekjob where enable!=0 and teamname='$teamname' and timestamp >= '$begin_time' and timestamp<='$end_time';";
     }
+
     $week=$DB->executeSQL($sql);
     if(!$week){
-        echo json_encode(array('ret'=>'false','获取失败!'));
+        echo json_encode(array('ret'=>'false','转换工作计划失败!'.$DB->lastError));
         die();
     }
     CCal2CSV::DownLoadCSV($week);
