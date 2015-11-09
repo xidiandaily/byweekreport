@@ -120,9 +120,9 @@ if($action=='submit_addjob'){
     $end_time=strftime("%Y-%m-%d %H:%M:%S",$end_time);
 
     if(empty($teamname) || $teamname=='ALL'){
-        $sql="select * from curweekjob where enable!=0 and timestamp >= '$begin_time' and timestamp <='$end_time';";
+        $sql="select * from curweekjob where enable!=0 and timestamp >= '$begin_time' and timestamp <='$end_time' order by classmate;";
     }else{
-        $sql="select * from curweekjob where enable!=0 and teamname='$teamname' and timestamp >= '$begin_time' and timestamp<='$end_time';";
+        $sql="select * from curweekjob where enable!=0 and teamname='$teamname' and timestamp >= '$begin_time' and timestamp<='$end_time' order by classmate;";
     }
 
     $week=$DB->executeSQL($sql);
@@ -133,9 +133,9 @@ if($action=='submit_addjob'){
 
 
     if(empty($teamname) || $teamname=='ALL'){
-        $sql="select * from lastweekjob where enable!=0 and timestamp >= '$begin_time' and timestamp<='$end_time';";
+        $sql="select * from lastweekjob where enable!=0 and timestamp >= '$begin_time' and timestamp<='$end_time' order by classmate;";
     }else{
-        $sql="select * from lastweekjob where enable!=0 and teamname='$teamname' and timestamp >= '$begin_time' and timestamp<='$end_time';";
+        $sql="select * from lastweekjob where enable!=0 and teamname='$teamname' and timestamp >= '$begin_time' and timestamp<='$end_time' order by classmate;";
     }
 
     $DB2=new MySQL(Loader::$config['dbconf']['main']['dbname'],
@@ -169,9 +169,9 @@ if($action=='submit_addjob'){
     $end_time=strftime("%Y-%m-%d %H:%M:%S",$end_time);
 
     if(empty($teamname) || $teamname=='ALL'){
-        $sql="select * from curweekjob where enable!=0 and timestamp >= '$begin_time' and timestamp <='$end_time';";
+        $sql="select * from curweekjob where enable!=0 and timestamp >= '$begin_time' and timestamp <='$end_time' order by classmate;";
     }else{
-        $sql="select * from curweekjob where enable!=0 and teamname='$teamname' and timestamp >= '$begin_time' and timestamp<='$end_time';";
+        $sql="select * from curweekjob where enable!=0 and teamname='$teamname' and timestamp >= '$begin_time' and timestamp<='$end_time' order by classmate;";
     }
 
     $week=$DB->executeSQL($sql);
