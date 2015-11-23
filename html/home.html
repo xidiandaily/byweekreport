@@ -56,6 +56,7 @@
                                 <option value="麻将小组">麻将小组</option>
                                 <option value="极冬小组">极冬小组</option>
                                 <option value="金刚小组">金刚小组</option>
+                                <option value="麻将PHP小组">麻将PHP小组</option>
                             </select>
                             <select id="id-select-weekcount" name="select" class="col-md-4">
                                 <option value="1">最近1周</option> 
@@ -201,7 +202,7 @@
         </script>
 
         <script type="text/template" id="id-weekreport-title-template">
-            <td colspan="14" id="" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info template_generate">云计算Server<%=item%>本周工作计划
+            <td colspan="14" id="" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info template_generate">云计算-<%=item%>-本周工作计划
                 <span class="pull-right">
                     <%if($("#id-table-addjob").is(":visible")){ %>
                     <button type="button" id="id-btn-addjob" class="btn btn-default" onclick="btn_click_addjob()">取消</button>
@@ -213,7 +214,7 @@
         </script>
 
         <script type="text/template" id="id-weekreport-lasttitle-template">
-            <td colspan="14" id="" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info template_generate">云计算Server<%=item%>上周工作周报
+            <td colspan="14" id="" style="background-color:#D9EDF7;font-size:20px" class="text-center text-info template_generate">云计算-<%=item%>-上周工作周报
                 <span class="pull-right">
                     <%if($("#id-table-addlastjob").is(":visible")){ %>
                     <button type="button" id="id-btn-addlastjob" class="btn btn-default" onclick="btn_click_addlastweekjob()">取消</button>
