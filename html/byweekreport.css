@@ -4,13 +4,12 @@
 
 .table{
     position:relative;
-    table-layout:fixed;
     color:#000000;
     word-break:break-all;
 }
 
 .table .by_hide{
-    font-size:8px;
+    font-size:14px;
 }
 
 .byweektable-group1{
