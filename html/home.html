@@ -11,6 +11,7 @@
 
         <!-- 可选的Bootstrap主题文件（一般不用引入） -->
         <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="html/byweekreport.css">
 
         <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
         <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -71,9 +72,15 @@
                 </div>
             </div>
             <table class="table table-hover table-bordered table-striped">
+                <colgroup span="1" class="byweektable-group1" ></colgroup>
+                <colgroup span="1" class="byweektable-group2" ></colgroup>
+                <colgroup span="10" class="byweektable-group3"></colgroup>
+                <colgroup span="1" class="byweektable-group4" ></colgroup>
+                <colgroup span="1" class="byweektable-group5" ></colgroup>
                 <tr id="id-weekreport-title">
                 </tr>
                 <tr>
+                    <td class="hide"></td>
                     <td rowspan="2">任务</td>
                     <td rowspan="2">负责人</td>
                     <td colspan="2">周一</td>
@@ -85,22 +92,24 @@
                     <td>备注</td>
                 </tr>
                 <tr>
-                    <td>AM</td>
-                    <td>PM</td>
-                    <td>AM</td>
-                    <td>PM</td>
-                    <td>AM</td>
-                    <td>PM</td>
-                    <td>AM</td>
-                    <td>PM</td>
-                    <td>AM</td>
-                    <td>PM</td>
+                    <td class="hide"></td>
+                    <td>A<br>M</td>
+                    <td>P<br>M</td>
+                    <td>A<br>M</td>
+                    <td>P<br>M</td>
+                    <td>A<br>M</td>
+                    <td>P<br>M</td>
+                    <td>A<br>M</td>
+                    <td>P<br>M</td>
+                    <td>A<br>M</td>
+                    <td>P<br>M</td>
                     <td></td>
                     <td class="by_hide"></td>
                 </tr>
                 <tr id="id-table-addjob" style="display:none">
-                    <td><input type="text" name="job" value="【】"/></td>
-                    <td><input type="text" name="classmate"/></td>
+                    <td class="hide" name="id"></td>
+                    <td><input type="text" name="job" style="width:100%" value="【】"/></td>
+                    <td><input type="text" name="classmate" style="width:100%"/></td>
                     <td><input type="checkbox" name="c11"/></td>
                     <td><input type="checkbox" name="c12"/></td>
                     <td><input type="checkbox" name="c21"/></td>
@@ -112,13 +121,20 @@
                     <td><input type="checkbox" name="c51"/></td>
                     <td><input type="checkbox" name="c52"/></td>
                     <td></td>
-                    <td><input type="text" name="info"/><button type="button" class="btn btn-mini" onclick="btn_click_submit_addjob()">提交</button></td>
+                    <td><input type="text" name="info" style="width:80%"/><button type="button" class="btn btn-mini" onclick="btn_click_submit_addjob()">提交</button></td>
                 </tr>
             </table>
             <table class="table table-hover table-bordered table-striped">
+                <colgroup span="1" class="byweektable-group1" ></colgroup>
+                <colgroup span="1" class="byweektable-group2" ></colgroup>
+                <colgroup span="10" class="byweektable-group3"></colgroup>
+                <colgroup span="1" class="byweektable-group4" ></colgroup>
+                <colgroup span="1" class="byweektable-group5" ></colgroup>
+
                 <tr id="id-weekreport-lasttitle">
                 </tr>
                 <tr>
+                    <td class="hide" ></td>
                     <td rowspan="2">任务</td>
                     <td rowspan="2">负责人</td>
                     <td colspan="2">周一</td>
@@ -130,6 +146,7 @@
                     <td>完成进度</td>
                 </tr>
                 <tr>
+                    <td class="hide" ></td>
                     <td>AM</td>
                     <td>PM</td>
                     <td>AM</td>
@@ -144,8 +161,9 @@
                     <td class="by_hide"></td>
                 </tr>
                 <tr id="id-table-addlastjob" style="display:none">
-                    <td><input type="text" name="job" value="【】"/></td>
-                    <td><input type="text" name="classmate"/></td>
+                    <td class="hide" ></td>
+                    <td><input type="text" name="job" value="【】" style="width:100%" /></td>
+                    <td><input type="text" name="classmate" style="width:100%"/></td>
                     <td><input type="checkbox" name="c11"/></td>
                     <td><input type="checkbox" name="c12"/></td>
                     <td><input type="checkbox" name="c21"/></td>
@@ -157,7 +175,7 @@
                     <td><input type="checkbox" name="c51"/></td>
                     <td><input type="checkbox" name="c52"/></td>
                     <td></td>
-                    <td><input type="text" name="process" value="90"/><button type="button" class="btn btn-mini" onclick="btn_click_submit_addlastjob()">提交</button></td>
+                    <td><input type="text" name="process" value="90" style="width:30%"/><button type="button" class="btn btn-mini" onclick="btn_click_submit_addlastjob()">提交</button></td>
                 </tr>
             </table>
         </div>

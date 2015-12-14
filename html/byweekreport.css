@@ -1,0 +1,39 @@
+.container{
+    width:95%;
+}
+
+.table{
+    position:relative;
+    table-layout:fixed;
+    color:#000000;
+    word-break:break-all;
+}
+
+.table .by_hide{
+    font-size:8px;
+}
+
+.byweektable-group1{
+    width:50%;
+}
+
+.byweektable-group2{
+    width:8%;
+    padding:0px;
+}
+
+.byweektable-group3{
+    width:3%;
+    font-size:6px;
+    padding:0px;
+}
+
+.byweektable-group4{
+    width:5%;
+}
+
+.byweektable-group5{
+    width:30%;
+}
+
+
