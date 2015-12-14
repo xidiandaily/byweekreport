@@ -197,6 +197,7 @@ function btn_show_hide_button(){
     $(".btn").hide();
     $(".by_hide").hide();
     $("table").addClass("table-condensed");
+    $(".container").css("width","1170px");
     alert("所有按钮已经隐藏，请手动复制!");
 }
 
