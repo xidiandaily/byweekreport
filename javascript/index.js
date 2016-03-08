@@ -193,11 +193,80 @@ function btn_click_submit_dellastjob(id){
     });
 }
 
+function checkBrowser(){
+    c=navigator.userAgent.search("Chrome");
+    f=navigator.userAgent.search("Firefox");
+    m8=navigator.userAgent.search("MSIE 8.0");
+    m9=navigator.userAgent.search("MSIE 9.0");
+    if (c>-1){
+        brwsr = "Chrome";
+    }
+    else if(f>-1){
+        brwsr = "Firefox";
+    }else if (m9>-1){
+        brwsr ="MSIE 9.0";
+    }else if (m8>-1){
+        brwsr ="MSIE 8.0";
+    }
+    return brwsr;
+}
+
+function convert_css_to_style_for_firefox()
+{
+    var body_arr=Array("font-family","font-size","line-height","color");
+    $("body").each(function(){
+        for(var i in body_arr){
+            var atr=body_arr[i];
+            $(this).css(atr,$(this).css(atr));
+        }
+    });
+
+
+    var table_arr=Array("color","word-break","border-spacing","border-collapse","width","margin-bottom");
+    $("table").each(function(){
+        for(var i in table_arr){
+            var atr=table_arr[i];
+            $(this).css(atr,$(this).css(atr));
+        }
+    });
+
+    var tr_arr=Array("background-color");
+    $("tr").each(function(){
+        for(var i in tr_arr){
+            var atr=tr_arr[i];
+            $(this).css(atr,$(this).css(atr));
+        }
+    });
+
+    var td_arr=Array("border","padding","line-height","vertical-align","-moz-box-sizing","color","word-break","font-size","margin-bottom");
+    $("td").each(function(){
+        for(var i in td_arr){
+            var atr=td_arr[i];
+            if(atr=="border"){
+                $(this).css("border","1px solid rgb(221, 221, 221)");
+            }else if(atr=="line-height"){
+                $(this).css("line-height","1.4285");
+            }else{
+                $(this).css(atr,$(this).css(atr));
+            }
+            console.log(atr+":"+$(this).css(atr));
+        }
+    })
+
+    $(".text-center").css("text-align","center");
+    $(".text-info").css("color","rgb(49, 112, 143)");
+}
+
 function btn_show_hide_button(){
     $(".btn").hide();
     $(".by_hide").hide();
+    $("colgroup").hide();
     $("table").addClass("table-condensed");
     $(".container").css("width","1170px");
+    if(checkBrowser()=="Firefox"){
+        convert_css_to_style_for_firefox();
+        alert("你是FireFox");
+    }
     alert("所有按钮已经隐藏，请手动复制!");
 }
 
